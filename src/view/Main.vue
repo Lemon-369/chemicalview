@@ -31,7 +31,7 @@
             <i class="el-icon-s-unfold" v-if="isFewer"></i>
           </div>
           <el-menu
-            default-active="2"
+            :default-active="activerouter"
             class="el-menu-vertical-demo"
             router
             :collapse="isCollapse"
@@ -65,7 +65,8 @@
           return {
             isCollapse: true,
             isUnfold: true,
-            isFewer: false
+            isFewer: false,
+            activerouter: ""
           };
         },
         methods:{
@@ -74,7 +75,11 @@
             this.isUnfold = !this.isUnfold
             this.isFewer = !this.isFewer
           }
-        }
+        },
+      mounted() {
+        //获取地址栏中的路由，设置elementui中的导航栏选中状态
+        this.activerouter = window.location.pathname;
+      }
     }
 </script>
 
