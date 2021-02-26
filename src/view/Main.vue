@@ -30,6 +30,7 @@
             <i class="el-icon-s-fold" v-if="isUnfold"></i>
             <i class="el-icon-s-unfold" v-if="isFewer"></i>
           </div>
+          <!--侧边栏-->
           <el-menu
             :default-active="activerouter"
             class="el-menu-vertical-demo"

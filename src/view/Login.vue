@@ -28,6 +28,7 @@
 </template>
 
 <script>
+  import axios from 'axios'
     export default {
         name: "Login",
       data() {
@@ -52,8 +53,27 @@
         submitForm(formName) {
           this.$refs[formName].validate((valid) => {
             if (valid) {
-              // alert('submit!');
-              this.$router.push("/main")
+              axios({
+                method: "post",
+                url: 'http://localhost:8888/chemicals/user/login',
+                params: {
+                  username: this.loginForm.username,
+                  password: this.loginForm.password
+                },
+              }).then(function (response) {
+                  console.log(response);
+                  if(response.data==1){
+                    this.$router.push("/main")
+                    this.$message({
+                      message: '恭喜你，这是一条成功消息',
+                      type: 'success'
+                    });
+                  }else {
+                    this.$message.error('用户名密码错误！');
+                    console.log("用户名密码错误");
+                    console.log(response.data);
+                  }
+                }.bind(this))
             } else {
               console.log('error submit!!');
               return false;
