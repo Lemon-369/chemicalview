@@ -109,7 +109,7 @@
     transform: translate(-50%, -50%);
 
   }
-
+  /*头像样式*/
   .avatar_box{
     width: 130px;
     height: 130px;
@@ -120,11 +120,13 @@
     margin: -65px auto;
     background-color: pink;
   }
+  /*图片样式*/
   #portrait{
     width: 100%;
     height: 100%;
     border-radius: 50%;
   }
+  /*表单样式*/
   .login_form{
     position: absolute;
     left: 10%;

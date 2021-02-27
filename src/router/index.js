@@ -30,46 +30,54 @@ export default new Router({
       name: 'Main',
       component: Main,
       children :[
+        //业务员管理
         {
           path: '/main/users',
           name: 'users',
           component: Users
         },
+        //退货管理
         {
-          path: 'main/salesReturn',
+          path: '/main/salesReturn',
           name: 'salesReturn',
           component: SalesReturn
         },
+        //供应商管理
         {
-          path: 'main/Supplier',
+          path: '/main/supplier',
           name: 'supplier',
           component: Supplier
         },
+        //采购管理
         {
-          path: 'main/purchase',
+          path: '/main/purchase',
           name: 'purchase',
           component: Purchase
         },
+        //订单管理
         {
-          path: 'main/order',
+          path: '/main/order',
           name: 'order',
           component: Order
         },
+        //发票管理
         {
-          path: 'main/invoice',
+          path: '/main/invoice',
           name: 'invoice',
           component: Invoice
         },
+        //库存管理
         {
-          path: 'main/inventory',
+          path: '/main/inventory',
           name: 'inventory',
           component: Inventory
         },
+        //商品管理
         {
-          path: 'main/commodity',
+          path: '/main/commodity',
           name: 'commodity',
           component: Commodity
-        },
+        }
       ]
     },
 

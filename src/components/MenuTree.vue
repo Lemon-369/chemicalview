@@ -1,26 +1,26 @@
 <template>
     <div>
-      <el-menu-item index="/main/users">
+      <el-menu-item index="/main/commodity">
         <i class="el-icon-s-goods"></i>
         <span slot="title">商品管理</span>
       </el-menu-item>
-      <el-menu-item index="/main/users">
+      <el-menu-item index="/main/invoice">
         <i class="el-icon-s-order"></i>
         <span slot="title">发票管理</span>
       </el-menu-item>
-      <el-menu-item index="/main/users">
+      <el-menu-item index="/main/inventory">
         <i class="el-icon-discount"></i>
         <span slot="title">库存管理</span>
       </el-menu-item>
-      <el-menu-item index="/main/users">
+      <el-menu-item index="/main/supplier">
         <i class="el-icon-truck"></i>
         <span slot="title">供应商管理</span>
       </el-menu-item>
-      <el-menu-item index="/main/users">
+      <el-menu-item index="/main/order">
         <i class="el-icon-set-up"></i>
         <span slot="title">订单管理</span>
       </el-menu-item>
-      <el-menu-item index="/main/users">
+      <el-menu-item index="/main/purchase">
         <i class="el-icon-shopping-cart-1"></i>
         <span slot="title">采购管理</span>
       </el-menu-item>
