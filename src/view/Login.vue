@@ -55,7 +55,7 @@
             if (valid) {
               axios({
                 method: "post",
-                url: 'http://localhost:8888/chemicals/user/login',
+                url: '/chemicals/user/login',
                 params: {
                   username: this.loginForm.username,
                   password: this.loginForm.password

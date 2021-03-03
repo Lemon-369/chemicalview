@@ -9,16 +9,16 @@
     <el-card>
       <el-form :inline="true" :model="formInline" class="demo-form-inline">
         <el-form-item label="供应商">
-          <el-input v-model="formInline.user" placeholder="请输入"></el-input>
+          <el-input v-model="formInline.name" placeholder="请输入"></el-input>
         </el-form-item>
         <el-form-item label="业务员">
-          <el-input v-model="formInline.user" placeholder="请输入"></el-input>
+          <el-input v-model="formInline.userId" placeholder="请输入"></el-input>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" size="small" @click="">查询</el-button>
-          <el-button type="success" size="small" @click="">添加</el-button>
-          <el-button type="warning" size="small" @click="">修改</el-button>
-          <el-button type="danger" size="small" @click="">删除</el-button>
+          <el-button type="primary" size="small" @click="query">查询</el-button>
+          <el-button type="success" size="small" @click="insert">添加</el-button>
+          <el-button type="warning" size="small" @click="update">修改</el-button>
+          <el-button type="danger" size="small" @click="del">删除</el-button>
         </el-form-item>
       </el-form>
       <el-table
@@ -32,12 +32,12 @@
           width="55">
         </el-table-column>
         <el-table-column
-          prop="name"
+          prop="gid"
           label="序号"
           width="120">
         </el-table-column>
         <el-table-column
-          prop="address"
+          prop="userId"
           label="业务员"
           show-overflow-tooltip>
         </el-table-column>
@@ -47,31 +47,42 @@
           width="120">
         </el-table-column>
         <el-table-column
-          prop="address"
+          prop="phone"
           label="电话"
           show-overflow-tooltip>
         </el-table-column>
         <el-table-column
-          prop="name"
+          prop="wechat"
           label="微信或QQ"
           width="120">
         </el-table-column>
         <el-table-column
-          prop="address"
+          prop="status"
           label="商品关联状态"
           show-overflow-tooltip>
         </el-table-column>
         <el-table-column
           label="创建时间"
           width="120">
-          <template slot-scope="scope">{{ scope.row.date }}</template>
+          <template slot-scope="scope">{{ scope.row.createTime }}</template>
         </el-table-column>
         <el-table-column
-          prop="name"
+          prop="remark"
           label="备注"
           width="120">
         </el-table-column>
       </el-table>
+      <!--分页-->
+      <el-pagination
+        style="padding-top: 15px"
+        @size-change="handleSizeChange"
+        @current-change="handleCurrentChange"
+        :current-page="page.currentPage"
+        :page-sizes="[5, 10, 20, 30]"
+        :page-size="10"
+        layout="total, sizes, prev, pager, next, jumper"
+        :total="page.total">
+      </el-pagination>
     </el-card>
   </div>
 </template>
@@ -79,19 +90,116 @@
 <script>
     export default {
       //供应商管理
-        name: "Supplier",
+      name: "Supplier",
       data(){
         return{
           formInline: {
-            user: '',
-            region: ''
+            name: '',
+            userId: null
           },
           tableData: [
             {
-
+              gid:'',
+              userId:'',
+              name:'',
+              phone:'',
+              wechat:'',
+              status:'',
+              createTime:'',
+              remark:''
             }
-          ]
+          ],
+          page:{
+            currentPage:'', //当前页码（必须，否则选页有bug）
+            pageSizes: '',  //每页显示条目个数
+            total:''  //总条数
+          }
         }
+      },
+      beforeCreate() {
+        console.log("beforeCreate!!!");
+        this.axios.get('/chemicals/supplier/query'
+        )
+          .then((response)=>{
+            console.log(response);
+            this.tableData=response.data.data;
+            this.page.total=response.data.total;
+            this.page.pageSizes=response.data.pageSizes;
+          })
+          .catch(function (error) {
+            console.log(error);
+          })
+      },
+      methods:{
+        //分页
+        handleSizeChange(pageSize) {
+          console.log(`每页 ${pageSize} 条`);
+          this.axios.get('/chemicals/supplier/query',{
+              params:{
+                page: this.page.currentPage,
+                pageSize: pageSize
+              }
+            }
+          )
+            .then((response)=>{
+              console.log(response);
+              this.tableData=response.data.data;
+              this.page.total=response.data.total;
+              this.page.pageSizes=response.data.pageSizes;
+              this.page.currentPage=response.data.currentPage
+            })
+            .catch(function (error) {
+              console.log(error);
+            })
+
+        },
+        handleCurrentChange(page) {
+          console.log(`当前页: ${page}`);
+          this.axios.get('/chemicals/supplier/query',{
+              params:{
+                page: page,
+                pageSize: this.page.pageSizes
+              }
+            }
+          )
+            .then((response)=>{
+              console.log(response);
+              this.tableData=response.data.data;
+              this.page.total=response.data.total;
+              this.page.pageSizes=response.data.pageSizes;
+            })
+            .catch(function (error) {
+              console.log(error);
+            })
+        },
+        query(){
+          this.axios.get('/chemicals/supplier/query',{
+              params:{
+                name: this.formInline.name,
+                userId: this.formInline.userId
+              }
+            }
+          )
+          .then((response)=>{
+            console.log(response);
+            this.tableData=response.data.data;
+            this.page.total=response.data.total;
+            this.page.pageSizes=response.data.pageSizes;
+          })
+          .catch(function (error) {
+            console.log(error);
+          })
+        },
+        insert(){
+
+        },
+        del(){
+
+        },
+        update(){
+
+        }
+
       }
     }
 </script>

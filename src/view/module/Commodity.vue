@@ -91,7 +91,7 @@
               :limit="3"
               :on-exceed="handleExceed"
               :file-list="fileList">
-              <el-button size="small" type="primary">点击上传</el-button>
+              <el-button size="small" type="primary">上传图片</el-button>
             </el-upload>
           </template>
         </el-table-column>
@@ -102,10 +102,10 @@
         @size-change="handleSizeChange"
         @current-change="handleCurrentChange"
         :current-page="currentPage"
-        :page-sizes="[100, 200, 300, 400]"
-        :page-size="100"
+        :page-sizes="[10, 20, 30, 40]"
+        :page-size="10"
         layout="total, sizes, prev, pager, next, jumper"
-        :total="400">
+        :total="100">
       </el-pagination>
     </el-card>
   </div>
