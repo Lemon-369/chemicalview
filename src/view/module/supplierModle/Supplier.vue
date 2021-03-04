@@ -9,14 +9,14 @@
     <el-card>
       <el-form :inline="true" :model="formInline" class="demo-form-inline">
         <el-form-item label="供应商">
-          <el-input v-model="formInline.name" placeholder="请输入"></el-input>
+          <el-input v-model="formInline.name" placeholder="请输入" @keyup.enter.native="query"></el-input>
         </el-form-item>
         <el-form-item label="业务员">
-          <el-input v-model="formInline.userId" placeholder="请输入"></el-input>
+          <el-input v-model="formInline.userId" placeholder="请输入" @keyup.enter.native="query"></el-input>
         </el-form-item>
         <el-form-item>
           <el-button type="primary" size="small" @click="query">查询</el-button>
-          <el-button type="success" size="small" @click="insert">添加</el-button>
+          <el-button type="success" size="small" @click="insertOpen">添加</el-button>
           <el-button type="warning" size="small" @click="update">修改</el-button>
           <el-button type="danger" size="small" @click="del">删除</el-button>
         </el-form-item>
@@ -84,15 +84,22 @@
         :total="page.total">
       </el-pagination>
     </el-card>
+    <insertBox ref="insertBox" ></insertBox>
   </div>
+
 </template>
 
 <script>
+  import insertBox from "./box/insertBox";
     export default {
       //供应商管理
       name: "Supplier",
+      components: {
+        insertBox,
+      },
       data(){
         return{
+          multipleSelection:[],
           formInline: {
             name: '',
             userId: null
@@ -110,9 +117,9 @@
             }
           ],
           page:{
-            currentPage:'', //当前页码（必须，否则选页有bug）
+            currentPage: 0, //当前页码（必须，否则选页有bug）
             pageSizes: '',  //每页显示条目个数
-            total:''  //总条数
+            total:0  //总条数
           }
         }
       },
@@ -172,6 +179,11 @@
               console.log(error);
             })
         },
+        //val为选中数据的集合
+        //通过this.multipleSelection.prop字段 取得每一个选项的值
+        handleSelectionChange(val) {
+          this.multipleSelection = val;
+        },
         query(){
           this.axios.get('/chemicals/supplier/query',{
               params:{
@@ -190,8 +202,11 @@
             console.log(error);
           })
         },
-        insert(){
-
+        insertOpen(){
+          this.$refs.insertBox.onOpen(cancel => {
+            // cancel();
+            console.log('添加弹窗')
+          });
         },
         del(){
 

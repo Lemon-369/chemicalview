@@ -4,7 +4,7 @@ import Login from "../view/Login";
 import Main from "../view/Main";
 import Users from "../view/module/Users";
 import SalesReturn from "../view/module/SalesReturn";
-import Supplier from "../view/module/Supplier";
+import Supplier from "../view/module/supplierModle/Supplier";
 import Purchase from "../view/module/Purchase";
 import Order from "../view/module/Order";
 import Invoice from "../view/module/Invoice";

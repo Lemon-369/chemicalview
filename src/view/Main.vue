@@ -75,6 +75,12 @@
             this.isCollapse = !this.isCollapse
             this.isUnfold = !this.isUnfold
             this.isFewer = !this.isFewer
+          },
+          handleOpen(key, keyPath) {
+            console.log(key, keyPath);
+          },
+          handleClose(key, keyPath) {
+            console.log(key, keyPath);
           }
         },
       mounted() {
