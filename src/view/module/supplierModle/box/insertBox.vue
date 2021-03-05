@@ -3,7 +3,7 @@
     <el-dialog v-bind="$attrs" :visible="visible"
                width="400px"
                v-on="$listeners" @open="onOpen" @close="onClose" title="添加供应商信息">
-      <slot v-if="visible"></slot>
+<!--      <slot v-if="visible"></slot>-->
       <el-row :gutter="15">
         <el-form ref="insertForm"
                  :model="formData"
@@ -70,6 +70,7 @@
     props: [],
     data() {
       return {
+        //控制弹窗open
         visible: false,
         // visibleSlot: false,
         formData: {
