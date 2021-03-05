@@ -17,8 +17,6 @@
         <el-form-item>
           <el-button type="primary" size="small" @click="query">查询</el-button>
           <el-button type="success" size="small" @click="insertOpen">添加</el-button>
-          <el-button type="warning" size="small" @click="update">修改</el-button>
-          <el-button type="danger" size="small" @click="del">删除</el-button>
         </el-form-item>
       </el-form>
       <el-table
@@ -34,42 +32,51 @@
         <el-table-column
           prop="gid"
           label="序号"
-          width="120">
+          width="100">
         </el-table-column>
         <el-table-column
           prop="userId"
           label="业务员"
+          width="120"
           show-overflow-tooltip>
         </el-table-column>
         <el-table-column
           prop="name"
           label="供应商名称"
-          width="120">
+          width="150">
         </el-table-column>
         <el-table-column
           prop="phone"
           label="电话"
+          width="150"
           show-overflow-tooltip>
         </el-table-column>
         <el-table-column
           prop="wechat"
           label="微信或QQ"
-          width="120">
+          width="150">
         </el-table-column>
         <el-table-column
           prop="status"
           label="商品关联状态"
+          width="120"
           show-overflow-tooltip>
         </el-table-column>
         <el-table-column
           label="创建时间"
-          width="120">
+          width="200">
           <template slot-scope="scope">{{ scope.row.createTime }}</template>
         </el-table-column>
         <el-table-column
           prop="remark"
           label="备注"
-          width="120">
+          width="150">
+        </el-table-column>
+        <el-table-column width="300" label="操作">
+          <template slot-scope="scope">
+            <el-button type="warning" size="mini" @click="update(scope.row)">编辑</el-button>
+            <el-button type="danger" size="mini" @click="del(scope.row)">删除</el-button>
+          </template>
         </el-table-column>
       </el-table>
       <!--分页-->
@@ -85,17 +92,20 @@
       </el-pagination>
     </el-card>
     <insertBox ref="insertBox" ></insertBox>
+    <update-box ref="updateBox"></update-box>
   </div>
 
 </template>
 
 <script>
   import insertBox from "./box/insertBox";
+  import updateBox from "./box/updateBox";
     export default {
       //供应商管理
       name: "Supplier",
       components: {
         insertBox,
+        updateBox
       },
       data(){
         return{
@@ -203,16 +213,39 @@
           })
         },
         insertOpen(){
-          this.$refs.insertBox.onOpen(cancel => {
-            // cancel();
-            console.log('添加弹窗')
+          this.$refs.insertBox.onOpen();
+        },
+        del(val){
+          console.log(val.gid);
+          this.$confirm('此操作将删除供应商：【'+val.name+'】, 是否继续?', '提示', {
+            confirmButtonText: '确定',
+            cancelButtonText: '取消',
+            type: 'warning',
+            center: true
+          }).then(() => {
+            this.axios.delete("/chemicals/supplier/delete",{
+              params: {
+                gid: val.gid
+              }
+            }).then((response)=>{
+                if(response.data==1){
+                  this.$message({
+                    type: 'success',
+                    message: '删除成功!'
+                  });
+                }
+            })
+          })
+          .catch(() => {
+            this.$message({
+              type: 'info',
+              message: '已取消删除'
+            });
           });
-        },
-        del(){
 
         },
-        update(){
-
+        update(data){
+          this.$refs.updateBox.onOpen(data);
         }
 
       }
