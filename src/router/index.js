@@ -9,7 +9,7 @@ import Purchase from "../view/module/Purchase";
 import Order from "../view/module/Order";
 import Invoice from "../view/module/Invoice";
 import Inventory from "../view/module/Inventory";
-import Commodity from "../view/module/Commodity";
+import Commodity from "../view/module/commodityModle/Commodity";
 
 Vue.use(Router)
 

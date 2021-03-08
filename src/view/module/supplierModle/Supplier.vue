@@ -30,6 +30,7 @@
           width="55">
         </el-table-column>
         <el-table-column
+          type="index"
           prop="gid"
           label="序号"
           width="100">
@@ -64,7 +65,7 @@
         </el-table-column>
         <el-table-column
           label="创建时间"
-          width="200">
+          width="180">
           <template slot-scope="scope">{{ scope.row.createTime }}</template>
         </el-table-column>
         <el-table-column
@@ -72,7 +73,7 @@
           label="备注"
           width="150">
         </el-table-column>
-        <el-table-column width="300" label="操作">
+        <el-table-column width="150" label="操作" fixed="right">
           <template slot-scope="scope">
             <el-button type="warning" size="mini" @click="update(scope.row)">编辑</el-button>
             <el-button type="danger" size="mini" @click="del(scope.row)">删除</el-button>
@@ -168,7 +169,6 @@
             .catch(function (error) {
               console.log(error);
             })
-
         },
         handleCurrentChange(page) {
           console.log(`当前页: ${page}`);
@@ -233,6 +233,8 @@
                     type: 'success',
                     message: '删除成功!'
                   });
+                }else {
+                  this.$message.error('删除失败');
                 }
             })
           })
@@ -242,7 +244,6 @@
               message: '已取消删除'
             });
           });
-
         },
         update(data){
           this.$refs.updateBox.onOpen(data);
