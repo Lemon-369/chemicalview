@@ -64,7 +64,7 @@
       },
       data() {
           return {
-            isCollapse: true,
+            isCollapse: false,
             isUnfold: true,
             isFewer: false,
             activerouter: ""

@@ -14,9 +14,10 @@
               <el-input v-model="loginForm.username" prefix-icon="el-icon-user-solid"></el-input>
             </el-form-item>
             <el-form-item prop="password">
-              <el-input v-model="loginForm.password" show-password prefix-icon="el-icon-lock"></el-input>
+              <el-input v-model="loginForm.password" show-password
+                        @keydown.enter.native="submitForm('loginForm')"
+                        prefix-icon="el-icon-lock"></el-input>
             </el-form-item>
-
             <el-form-item>
               <el-button type="primary" @click="submitForm('loginForm')">立即登录</el-button>
               <el-button @click="resetForm('loginForm')">重置</el-button>
@@ -63,6 +64,7 @@
               }).then(function (response) {
                   console.log(response);
                   if(response.data==1){
+                    //登陆成功跳转主页面
                     this.$router.push("/main")
                     this.$message({
                       message: '恭喜你，这是一条成功消息',

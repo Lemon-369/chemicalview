@@ -17,7 +17,7 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {
-      path: '/',
+      path: '/',//默认来到登录页面
       redirect: '/login'
     },
     {

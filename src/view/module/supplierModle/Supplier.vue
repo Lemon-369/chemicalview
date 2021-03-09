@@ -158,8 +158,7 @@
                 pageSize: pageSize
               }
             }
-          )
-            .then((response)=>{
+          ).then((response)=>{
               console.log(response);
               this.tableData=response.data.data;
               this.page.total=response.data.total;
@@ -178,8 +177,7 @@
                 pageSize: this.page.pageSizes
               }
             }
-          )
-            .then((response)=>{
+          ).then((response)=>{
               console.log(response);
               this.tableData=response.data.data;
               this.page.total=response.data.total;
