@@ -155,7 +155,7 @@
         },
         //增加库存
         addition(kid){
-            this.$prompt('请输入', '提示', {
+            this.$prompt('请输入', '输入增量', {
               confirmButtonText: '确定',
               cancelButtonText: '取消',
             }).then(({ value }) => {
@@ -186,7 +186,7 @@
         //减少库存
         subtract(kid,amount){
           if(amount>0){
-            this.$prompt('请输入', '提示', {
+            this.$prompt('请输入', '输入减量', {
               confirmButtonText: '确定',
               cancelButtonText: '取消',
             }).then(({ value }) => {

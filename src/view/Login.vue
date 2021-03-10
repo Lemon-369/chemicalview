@@ -7,7 +7,7 @@
         <div class="avatar_box">
           <img id="portrait" src="@/assets/img/六花.gif">
         </div>
-        <!--表单-->
+        <!--登录表单-->
         <div class="login_form">
           <el-form :model="loginForm" :rules="loginRules" ref="loginForm" label-width="0px" class="login_Form">
             <el-form-item prop="username">
@@ -67,12 +67,11 @@
                     //登陆成功跳转主页面
                     this.$router.push("/main")
                     this.$message({
-                      message: '恭喜你，这是一条成功消息',
+                      message: '登录成功',
                       type: 'success'
                     });
                   }else {
                     this.$message.error('用户名密码错误！');
-                    console.log("用户名密码错误");
                     console.log(response.data);
                   }
                 }.bind(this))
