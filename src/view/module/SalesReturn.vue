@@ -31,39 +31,50 @@
           width="55">
         </el-table-column>
         <el-table-column
+          prop="did"
+          label="ID"
+          width="80">
+        </el-table-column>
+        <el-table-column
+          prop="userId"
+          label="业务员id"
+          width="100">
+        </el-table-column>
+        <el-table-column
           prop="name"
-          label="序号"
+          label="订单编号"
           width="120">
         </el-table-column>
         <el-table-column
           prop="name"
-          label="发票品名"
-          width="120">
-        </el-table-column>
-        <el-table-column
-          prop="name"
-          label="Cas号"
+          label="商品名称"
           width="120">
         </el-table-column>
         <el-table-column
           prop="name"
           label="数量"
+          width="100">
+        </el-table-column>
+        <el-table-column
+          prop="name"
+          label="物流公司"
           width="120">
         </el-table-column>
         <el-table-column
           prop="name"
-          label="价格"
-          width="120">
-        </el-table-column>
-        <el-table-column
-          prop="name"
-          label="单位"
+          label="物流编号"
           width="120">
         </el-table-column>
         <el-table-column
           label="创建日期"
           width="120">
           <template slot-scope="scope">{{ scope.row.date }}</template>
+        </el-table-column>
+        <el-table-column width="300" label="操作" fixed="right">
+          <template slot-scope="scope">
+            <el-button type="success" size="mini" @click="">修改</el-button>
+            <el-button type="danger" size="mini" @click="">删除</el-button>
+          </template>
         </el-table-column>
       </el-table>
     </el-card>

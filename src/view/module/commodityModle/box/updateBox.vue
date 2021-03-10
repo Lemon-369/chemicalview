@@ -31,7 +31,10 @@
           <el-col :span="24">
             <el-form-item label="日期选择" prop="updateTime">
               <el-date-picker v-model="formData.updateTime" format="yyyy-MM-dd" value-format="yyyy-MM-dd"
-                              :style="{width: '100%'}" placeholder="请选择日期选择" clearable></el-date-picker>
+                              :style="{width: '100%'}"
+                              placeholder="请选择日期选择" clearable>
+
+              </el-date-picker>
             </el-form-item>
           </el-col>
           <el-col :span="24">

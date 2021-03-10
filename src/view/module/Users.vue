@@ -8,14 +8,14 @@
     </el-breadcrumb>
     <!--用户列表卡片-->
     <el-card class="box-card">
-      <el-form :inline="true" :model="formInline" class="demo-form-inline">
-        <el-form-item label="审批人">
-          <el-input v-model="formInline.user" placeholder="审批人"></el-input>
+      <el-form :inline="true" :model="formData" class="demo-form-inline">
+        <el-form-item label="用户">
+          <el-input v-model="formData.user" placeholder="请输入用户名"></el-input>
         </el-form-item>
-        <el-form-item label="活动区域">
-          <el-select v-model="formInline.region" placeholder="活动区域">
-            <el-option label="上海" value="shanghai"></el-option>
-            <el-option label="北京" value="beijing"></el-option>
+        <el-form-item label="权限" prop="userId">
+          <el-select v-model="formData.userId" placeholder="请选择权限" clearable :style="{width: '100%'}">
+            <el-option v-for="(item, index) in privilege" :key="index" :label="item.userName"
+                       :value="item.uid" :disabled="item.disabled"></el-option>
           </el-select>
         </el-form-item>
         <el-form-item>
@@ -29,17 +29,27 @@
         style="width: 100%; height: 450px">
         <el-table-column
           prop="date"
-          label="日期"
+          label="ID"
           width="180">
         </el-table-column>
         <el-table-column
-          prop="name"
-          label="姓名"
+          prop="userName"
+          label="用户名"
           width="180">
         </el-table-column>
         <el-table-column
-          prop="address"
-          label="地址">
+          prop="password"
+          label="密码">
+        </el-table-column>
+        <el-table-column
+          prop="type"
+          label="权限">
+        </el-table-column>
+        <el-table-column width="300" label="操作" fixed="right">
+          <template slot-scope="scope">
+            <el-button type="success" size="mini" @click="">修改</el-button>
+            <el-button type="danger" size="mini" @click="">删除</el-button>
+          </template>
         </el-table-column>
       </el-table>
       <!--分页-->
@@ -63,27 +73,19 @@
       data() {
         return {
           currentPage: 4,
-          formInline: {
+          formData: {
             user: '',
             region: ''
           },
           tableData: [{
-            date: '2016-05-02',
-            name: '王小虎',
-            address: '上海市普陀区金沙江路 1518 弄'
-          }, {
-            date: '2016-05-04',
-            name: '王小虎',
-            address: '上海市普陀区金沙江路 1517 弄'
-          }, {
-            date: '2016-05-01',
-            name: '王小虎',
-            address: '上海市普陀区金沙江路 1519 弄'
-          }, {
-            date: '2016-05-03',
-            name: '王小虎',
-            address: '上海市普陀区金沙江路 1516 弄'
-          }]
+
+          }],
+          //业务员选项
+          privilege: {
+            admin:'',
+
+          },
+
         }
       },
       methods: {
