@@ -19,14 +19,14 @@
             type="date"
             placeholder="选择日期"
             format="yyyy 年 MM 月 dd 日"
-            value-format="timestamp">
+            value-format="yyyy-MM-dd">
           </el-date-picker>
           <el-date-picker
             v-model="formInline.updateTimeTwo"
             type="date"
             placeholder="选择日期"
             format="yyyy 年 MM 月 dd 日"
-            value-format="timestamp">
+            value-format="yyyy-MM-dd">
           </el-date-picker>
         </el-form-item>
         <el-form-item>

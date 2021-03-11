@@ -2,7 +2,7 @@
   <div>
     <el-dialog v-bind="$attrs" :visible="visible"
                width="400px"
-               v-on="$listeners" @open="onOpen" @close="onClose" title="添加供应商信息">
+               v-on="$listeners" @open="onOpen" @close="onClose" title="编辑商品信息">
       <!--      <slot v-if="visible"></slot>-->
       <el-row :gutter="15">
         <el-form ref="insertForm"
